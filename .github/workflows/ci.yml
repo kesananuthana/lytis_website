@@ -3,14 +3,12 @@ name: Lytis Website
 on:
   push:
     branches:
-      - Main
-  pull_request:
-    branches:
-      - Main
+      - main
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -19,9 +17,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.35.7'
-      
+
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build Docker Image
-        run: docker build -t lytis .
+      - name: Build Website
+        run: flutter build web --release
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
