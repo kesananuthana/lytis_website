@@ -35,8 +35,7 @@ class _TitlePageState extends State<TitlePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        //backgroundColor: Colors.teal,
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.teal,
         title: Padding(
           padding: EdgeInsets.only(left: context.width * 0.02),
           child: Text(
