@@ -35,7 +35,8 @@ class _TitlePageState extends State<TitlePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        //backgroundColor: Colors.teal,
+        backgroundColor: Colors.amber,
         title: Padding(
           padding: EdgeInsets.only(left: context.width * 0.02),
           child: Text(
@@ -129,9 +130,7 @@ class _BuildMenuState extends State<BuildMenu> {
       create: (context) => TitleBloc(),
       child: BlocBuilder<TitleBloc, TitleState>(
         builder: (context, state) {
-          if(state is TitleHover){
-            
-          }
+          if (state is TitleHover) {}
           return MouseRegion(
             onEnter: (event) {
               context.read<TitleBloc>().add(TitleHoverEvent());
@@ -146,7 +145,10 @@ class _BuildMenuState extends State<BuildMenu> {
               child: Text(
                 widget.text,
                 style: GoogleFonts.roboto(
-                  color: context.read<TitleBloc>().isHover ? Colors.black : Colors.white,
+                  color:
+                      context.read<TitleBloc>().isHover
+                          ? Colors.black
+                          : Colors.white,
                   fontSize: context.width * 0.013,
                   fontWeight: FontWeight.w500,
                   decoration: TextDecoration.none,
